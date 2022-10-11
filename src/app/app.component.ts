@@ -10,6 +10,8 @@ import { BlueprintData } from './shared/blueprint-data.model';
 })
 export class AppComponent {
   serverElements = [new ServerElement('TestServer', 'server', 'Just a test')];
+  oddFiredNumbers: number[] = []
+  evenFiredNumbers: number[] = []
 
   onServerAdded(serverData: ServerData) {
     this.serverElements.push({
@@ -27,11 +29,21 @@ export class AppComponent {
     });
   }
 
-  onChange(){
+  onChange() {
     this.serverElements[0].name = 'Changed!'
   }
 
-  onDelete(){
+  onDelete() {
     this.serverElements.splice(0, 1);
   }
+
+  onIntervalSent(intervalNumber: number) {
+    console.log(intervalNumber);
+    if (intervalNumber % 2 === 0) {
+      this.evenFiredNumbers.push(intervalNumber)
+    } else {
+      this.oddFiredNumbers.push(intervalNumber)
+    }
+  }
+
 }
