@@ -12,7 +12,8 @@ import {
   AfterViewChecked,
   OnDestroy,
   ElementRef,
-  ViewChild
+  ViewChild,
+  ContentChild
 } from '@angular/core';
 import { ServerElement } from '../shared/server-element.model';
 
@@ -34,6 +35,7 @@ export class ServerElementComponent implements OnInit,
   @Input('srvElement') element: ServerElement;
   @Input() name: string; //ng-onChange only works on primitive binding not models as the model doesn't change in memory just updates the property
   @ViewChild('header', {static: true}) header : ElementRef;
+  @ContentChild('contentParagraph', {static: true}) contentParagraph : ElementRef;
 
   constructor() {
     console.log('constructor called');
@@ -47,6 +49,8 @@ export class ServerElementComponent implements OnInit,
   ngOnInit() {
     console.log('ngOnInit called');
     console.log(`Text content: ${this.header.nativeElement.textContent}`);
+    console.log(`Text content of paragraph: ${this.contentParagraph.nativeElement.textContent}`);
+
     // on init cant check a value on the DOM until it has been rendered
   }
 
@@ -57,6 +61,7 @@ export class ServerElementComponent implements OnInit,
 
   ngAfterContentInit() {
     console.log('ngAfterContentInit called');
+    console.log(`Text content of paragraph: ${this.contentParagraph.nativeElement.textContent}`);
     // checks only once after content loaded 
   }
 

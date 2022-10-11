@@ -6,7 +6,7 @@
       <button class="btn btn-primary btn-margin-right btn-margin-bottom" (click)="onChange()">Change First Element</button>
       <button class="btn btn-danger btn-margin-bottom" (click)="onDelete()">Destroy First Element</button>
       <app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement" [name]="serverElement.name">
-              <p>
+              <p #contentParagraph>
             <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
             <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
         </p></app-server-element>
