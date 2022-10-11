@@ -4,7 +4,8 @@ import {
   OnChanges,
   OnInit,
   SimpleChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
+  DoCheck
 } from '@angular/core';
 import { ServerElement } from '../shared/server-element.model';
 
@@ -19,15 +20,20 @@ export class ServerElementComponent implements OnInit, OnChanges {
   @Input() name: string; //ng-onChange only works on primitive binding not models as the model doesn't change in memory just updates the property
 
   constructor() {
-    console.log('1: constructor called');
+    console.log('constructor called');
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('2: ngOnChanges called');
+    console.log('ngOnChanges called');
     console.log(changes)
   }
 
   ngOnInit() {
-    console.log('3: ngOnInit called');
+    console.log('ngOnInit called');
+  }
+
+  ngDoCheck(){
+    console.log('ngDoCheck called');
+    // checks every time something is clicked or changed try not to use with powerful hungry code
   }
 }
