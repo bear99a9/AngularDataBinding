@@ -6,7 +6,10 @@ import {
   SimpleChanges,
   ViewEncapsulation,
   DoCheck,
-  AfterContentInit
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked
 } from '@angular/core';
 import { ServerElement } from '../shared/server-element.model';
 
@@ -16,7 +19,14 @@ import { ServerElement } from '../shared/server-element.model';
   styleUrls: ['./server-element.component.css'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class ServerElementComponent implements OnInit, OnChanges, DoCheck, AfterContentInit {
+export class ServerElementComponent implements OnInit,
+  OnChanges,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked {
+
   @Input('srvElement') element: ServerElement;
   @Input() name: string; //ng-onChange only works on primitive binding not models as the model doesn't change in memory just updates the property
 
@@ -41,5 +51,20 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
   ngAfterContentInit() {
     console.log('ngAfterContentInit called');
     // checks only once after content loaded 
+  }
+
+  ngAfterContentChecked() {
+    console.log('ngAfterContentChecked called');
+    // checks every time after each change cycle 
+  }
+
+  ngAfterViewInit(){
+    console.log('ngAfterViewInit called');
+    // checks only once after view loaded 
+  }
+
+  ngAfterViewChecked(){
+    console.log('ngAfterViewChecked called');
+    // checks every time after each change cycle 
   }
 }
