@@ -9,7 +9,8 @@ import {
   AfterContentInit,
   AfterContentChecked,
   AfterViewInit,
-  AfterViewChecked
+  AfterViewChecked,
+  OnDestroy
 } from '@angular/core';
 import { ServerElement } from '../shared/server-element.model';
 
@@ -25,7 +26,8 @@ export class ServerElementComponent implements OnInit,
   AfterContentInit,
   AfterContentChecked,
   AfterViewInit,
-  AfterViewChecked {
+  AfterViewChecked,
+  OnDestroy {
 
   @Input('srvElement') element: ServerElement;
   @Input() name: string; //ng-onChange only works on primitive binding not models as the model doesn't change in memory just updates the property
@@ -66,5 +68,10 @@ export class ServerElementComponent implements OnInit,
   ngAfterViewChecked(){
     console.log('ngAfterViewChecked called');
     // checks every time after each change cycle 
+  }
+
+  ngOnDestroy(){
+    console.log('ngAfterViewChecked called');
+    // called just before the element is destroyed  
   }
 }
